@@ -3,9 +3,9 @@ package exAcesso3;
 import java.util.Random;
 
 public class Conta {
-    String titular;
-    String identificador;
-    String senha;
+    private String titular;
+    private String identificador;
+    private String senha;
     private float saldo;
     static String nomeBanco;
 
@@ -24,9 +24,15 @@ public class Conta {
     public void depositar(float valor){
         saldo +=valor;
     }
+    public void sacar(float valor){
+        saldo-=valor;
+    }
 
+    public float verificaSaldo(){
+        return saldo;
+    }
 
-    void geraIdentificador(){
+    private void geraIdentificador(){
         Random alea = new Random();
         String identificador="";
         for(int i=0; i<4; i++){
@@ -36,5 +42,19 @@ public class Conta {
         this.identificador = identificador;
 
     }
+    public String getIdentificador(){
+        return identificador;
+    }
+    public String getTitular(){
+        return titular;
+
+    }
+    public void setSenha(String senha){
+        this.senha = senha;
+    }
+    public void setTitular(String titular){
+        this.titular = titular;
+    }
+
 
 }
