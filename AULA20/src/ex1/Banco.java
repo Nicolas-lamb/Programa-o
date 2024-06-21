@@ -95,7 +95,7 @@ public class Banco {
                                         System.out.println("Saque realizado.");
                                     }
                                     case '3' -> {
-                                        System.out.println("O saldo de "+conta[c].titular+" atual é R$" + conta[c].saldo+"0");
+                                        System.out.println("O saldo de "+conta[c].titular+" atual é R$" + String.format("%,2f", conta[c].saldo));
                                     }
 
 
