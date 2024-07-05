@@ -17,7 +17,7 @@ public class ContaPou extends Conta{
     }
 
     public String verificaSaldo(){
-        String retorno = String.format("Seu saldo é de R$.2f\n",saldo);
+        String retorno = String.format("Seu saldo é de R$%.2f\n",saldo);
         return retorno;
     }
 

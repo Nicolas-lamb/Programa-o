@@ -16,11 +16,11 @@ public class ContaCor extends Conta{
          return false;
     }
     public String verificaSaldo(){
-         String retorno = String.format("Seu saldo é de R$.2f\n",saldo);
+         String retorno = String.format("Seu saldo é de R$%.2f\n",saldo);
          if(saldo>=0){
-             retorno+=String.format("Limite disponível R$.2f\n",limite);
+             retorno+=String.format("Limite disponível R$%.2f\n",limite);
         }else{
-             retorno+=String.format("Limite disponível R$.2f\n",limite+saldo);
+             retorno+=String.format("Limite disponível R$%.2f\n",limite+saldo);
         }
          return retorno;
     }

@@ -15,6 +15,22 @@ public class Banco {
         System.out.print(mensagem+": ");
         return ler.nextFloat();
     }
+    public static  ContaCor cadastraCC(){
+        String titular = leString("Qual o nome do titular");
+        String senha = leString("Qual a senha");
+        float limite = leFloat("Qual o limite inicial");
+        ContaCor c1 = new ContaCor(titular, senha, limite);
+        System.out.println("Conta cadastrada com o id: "+c1.getIdentificador());
+        return c1;
+    }
+    public static ContaPou cadastraCP(){
+        String titular = leString("Qual o nome do titular");
+        String senha = leString("Qual a senha");
+        float deposito = leFloat("Qual o depósito inicial");
+        ContaPou c1 = new ContaPou(titular, senha, deposito);
+        System.out.println("Conta cadastrada com o id: "+c1.getIdentificador());
+        return c1;
+    }
 
     public static ContaCor acessaCC(ContaCor c1){
         String opc;
@@ -37,6 +53,10 @@ public class Banco {
                     if(c1.sacar(valor))
                         System.out.println("Saque realizado com sucesso!");
                     else System.out.println("Saldo insuficiente!");
+                }
+                case "v"->{
+                    String res = c1.verificaSaldo();
+                    System.out.println(res);
                 }
             }
         }while(!opc.equals("e"));
@@ -65,6 +85,10 @@ public class Banco {
                         System.out.println("Saque realizado com sucesso!");
                     else System.out.println("Saldo insuficiente!");
                 }
+                case "v"->{
+                    String res = c1.verificaSaldo();
+                    System.out.println(res);
+                }
             }
         }while(!opc.equals("e"));
         return c1;
@@ -90,30 +114,42 @@ public class Banco {
 
             switch (opc){
                 case "cc" ->{
-                    String titular;
-                    String senha;
-                    float limite;
-                    titular= leString("Digite o titular da conta corrente:");
-                    senha= ler.next("Digite a senha desse titular: ");
-                    limite= leFloat("Digite o limite inicial: ");
-                    listaCC[contCC] = new ContaCor(titular, senha, limite);
+                    listaCC[contCC] = cadastraCC();
                     contCC++;
                 }
                 case "cp" ->{
-                    String titular;
-                    String senha;
-                    float deposito;
-                    titular= leString("Digite o titular da conta corrente:");
-                    senha= ler.next("Digite a senha desse titular: ");
-                    deposito= leFloat("Digite o deposito inicial: ");
-                    listaCP[contCP] = new ContaPou(titular, senha, deposito);
-                    contCC++;
+                    listaCP[contCP] = cadastraCP();
+                    contCP++;
                 }
                 case "ac" ->{
-                    String identificador;
-                    String senha;
-                    identificador= leString("Digite o identificador:");
-                    senha= ler.next("Digite a senha desse titular: ");
+                    String identificador= leString("Digite o identificador");
+                    String senha= leString("Digite a senha desse titular");
+                    int posicao = -1;
+                    for(int i = 0; i<contCC; i++){
+                        if(listaCC[i].validaAcesso(identificador, senha)){
+                            posicao = i;
+                        }
+                    }
+                    if(posicao >= 0){
+                        listaCC[posicao] = acessaCC(listaCC[posicao]);
+                    }else{
+                        System.out.println("Informações de acesso inválida");
+                    }
+                }
+                case "ap" ->{
+                    String identificador= leString("Digite o identificador");
+                    String senha= leString("Digite a senha desse titular");
+                    int posicao = -1;
+                    for(int i = 0; i<contCP; i++){
+                        if(listaCP[i].validaAcesso(identificador, senha)){
+                            posicao = i;
+                        }
+                    }
+                    if(posicao >= 0){
+                        listaCP[posicao] = acessaCP(listaCP[posicao]);
+                    }else{
+                        System.out.println("Informações de acesso inválida");
+                    }
                 }
             }
         }
