@@ -48,20 +48,12 @@ public class Lista <T>{
             if(elementos[i].equals(elemento)) {
                 posicao = i;
             }
-
         }
         if(posicao !=0){
             return posicao;
         }
         return -1;
     }
-
-
-
-
-
-
-
 
     public void adiciona(T elemento){
         aumentaCapacidade();
