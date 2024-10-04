@@ -13,26 +13,37 @@ public class Paciente {
     private ArrayList<Atendimento> atendimentos;
     private boolean ativo;
 
-    public Paciente(String nome) {
-        nome = this.nome;
-        atendimentos = new ArrayList<Atendimento>();
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
+    public Paciente(String nome, String sobrenome) {
         this.nome = nome;
+        this.sobrenome = sobrenome;
+        this.atendimentos = new ArrayList<Atendimento>();
     }
 
     public boolean isAtivo() {
-        return ativo;
+            return ativo;
     }
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
+
+    public String getNome(){
+        String nomeCompleto = nome +" "+sobrenome;
+        return nomeCompleto;
+    }
+
+    public void setNome(String nome){
+        this.nome = nome;
+    }
+
+    public String getSobrenome(){;
+        return sobrenome;
+    }
+
+    public void setSobrenome(String sobrenome){
+        this.sobrenome = sobrenome;
+    }
+
 
     public LocalDate getDataNascimento() {
         return dataNascimento;
@@ -47,15 +58,15 @@ public class Paciente {
     }
 
     public void adicionarConsulta(Atendimento atendimento) {
-        atendimentos.add(atendimento);
+        this.atendimentos.add(atendimento);
     }
 
     public int getIdade() {
         LocalDate dataAtual = LocalDate.now();
         // Calcula a diferença entre as datas
-        Period periodo = Period.between(dataNascimento, dataAtual);
-        // Obtém a idade da pessoa
-        return periodo.getYears();
+       Period periodo = Period.between(dataNascimento, dataAtual);
+        //Obtém a idade da pessoa
+       return periodo.getYears();
     }
 
     @Override
@@ -63,8 +74,9 @@ public class Paciente {
         String retorno = "Nome: " + nome + " " + sobrenome;
         DateTimeFormatter formatoBr = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String data = formatoBr.format(this.dataNascimento);
-        retorno += " Data de nascimento: " + data;
-        retorno += " Idade: " + getIdade();
+        retorno += ", Data de nascimento: " + data;
+        retorno += ", Idade: " + getIdade();
         return retorno;
     }
+
 }
