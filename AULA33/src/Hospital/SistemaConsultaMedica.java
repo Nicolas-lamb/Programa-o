@@ -164,11 +164,16 @@ public class SistemaConsultaMedica {
     public static void apagarPaciente(){
             String tipo = "apagar";
             String nomeCompleto = pegarPaciente(tipo);
-            for (Paciente paciente : pacientes) {
-                if (nomeCompleto.equals(paciente.getNome())){
-                    pacientes.remove(paciente);
+            for(int i =0; i<pacientes.size(); i++){
+                if (nomeCompleto.equals(pacientes.get(i).getNome())){
+                    pacientes.remove(pacientes.get(i));
                 }
             }
+           // for (Paciente paciente : pacientes) {
+               // if (nomeCompleto.equals(paciente.getNome())){
+                //    pacientes.remove(paciente);
+               // }
+            //}
     }
 
     public static String pegarPaciente(String tipo){
