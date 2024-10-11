@@ -2,7 +2,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class CriarConexão {
+public class CriarConexao {
     public static void main(String[] args) {
         try{
             //loader do driver
