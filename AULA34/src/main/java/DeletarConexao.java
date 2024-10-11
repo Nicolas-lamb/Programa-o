@@ -1,10 +1,11 @@
 import java.sql.*;
 import java.util.Scanner;
 
-public class AlterarConexão {
+public class DeletarConexao {
     public static void main(String[] args) {
-        Scanner ler = new Scanner(System.in);
         try{
+
+            Scanner ler = new Scanner(System.in);
             //loader do driver
             Class.forName("com.mysql.cj.jdbc.Driver");
             //tentar conectar
@@ -33,29 +34,17 @@ public class AlterarConexão {
 
             }
 
-            sql = "UPDATE tb_contato set nome = ?, e_mail = ?, telefone = ? WHERE contato_id = ?";
-            requisicao =  conexao.prepareStatement(sql);
-
-            System.out.print("Digite o id que deseja alterar: ");
+            System.out.println("Qual id deseja excluir: ");
             int id = ler.nextInt();
+            sql = "delete from tb_contato where contato_id = ?";
+            requisicao = conexao.prepareStatement(sql);
 
-            System.out.print("Nome: ");
-            String nome = ler.next();
-            System.out.print("E-mail: ");
-            String email = ler.next();
-            System.out.print("Telefone: ");
-            String telefone = ler.next();
-
-            requisicao.setString(1, nome);
-            requisicao.setString(2, email);
-            requisicao.setString(3, telefone);
-            requisicao.setInt(4, id);
+            requisicao.setInt(1, id);
             int res = requisicao.executeUpdate();
-
-            if(res >0){
-                System.out.println("Alteração feita");
+            if(res > 0){
+                System.out.println("Exclusão feita");
             }else{
-                System.out.println("Não foi possível realizar a alteração");
+                System.out.println("Não foi possível realizar a exclusão");
             }
             System.out.println(requisicao);
 
