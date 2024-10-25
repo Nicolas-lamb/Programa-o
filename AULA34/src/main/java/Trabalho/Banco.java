@@ -31,7 +31,7 @@ public class Banco {
     public Connection obterConexao(){
         try{
             if(server!=null){
-                conexao = DriverManager.getConnection("jdbc:mysql"+"://localhost:3306/prog2sexta", "prog2sexta", "123456"/*"jdbc:mysql"+ server + port+ "/"+user, ""+user, ""+key*/);
+                conexao = DriverManager.getConnection("jdbc:mysql"+ server + port+ "/"+user, ""+user, ""+key);
             }else{
                 conexao = DriverManager.getConnection("jdbc:mysql"+"://localhost:3306"+ "/"+user, ""+user, ""+key);
             }
