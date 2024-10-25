@@ -6,7 +6,7 @@ public class AlterarConexão {
         Scanner ler = new Scanner(System.in);
         try{
             //loader do driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+
             //tentar conectar
             Connection conexao = DriverManager.getConnection("jdbc:mysql"+"://localhost:3306/prog2sexta", "prog2sexta", "123456");
             System.out.println("Estou conectado");
@@ -61,9 +61,10 @@ public class AlterarConexão {
 
 
             conexao.close();
-        }catch (ClassNotFoundException e){
-            System.out.println("Erro ao carrgar o driver!");
-        } catch (SQLException e) {
+        }//catch (ClassNotFoundException e){
+           // System.out.println("Erro ao carrgar o driver!");
+        //}
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

@@ -12,7 +12,7 @@ public class PesquisarConexao {
             Connection conexao = DriverManager.getConnection("jdbc:mysql"+"://localhost:3306/prog2sexta", "prog2sexta", "123456");
             System.out.println("Estou conectado");
 
-            String sql = " select contato_id, nome, e_mail, telefone, now() as now, time_to_sec(curtime()) as sec from tb_contato where SOUNDEX(nome) like soundex(?) or e_mail like? or telefone like ?";
+            String sql = " select contato_id, nome, e_mail, telefone, now() as now, time_to_sec(curtime()) as sec from tb_contato where SOUNDEX(nome) like soundex(?) or e_mail like ? or telefone like ?";
             
 
             PreparedStatement requisicao = conexao.prepareStatement(sql);
