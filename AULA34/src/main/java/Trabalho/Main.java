@@ -20,6 +20,8 @@ public class Main {
             System.out.println("3 - Adicionar contato");
             System.out.println("4 - Atribuir conexão ao contato");
             System.out.println("5 - Alterar contato");
+            System.out.println("5 - Deletar contato");
+
             System.out.println("0 - Conectar com o banco local");
             System.out.println("===============================");
             System.out.print("Opção: ");
@@ -55,6 +57,7 @@ public class Main {
                         System.out.println("++++++++++++++++++++++++++++++");
                         System.out.println("1 - Deseja criar com conexão");
                         System.out.println("2 - Deseja criar sem conexão");
+                        System.out.println("3 - Voltar");
                         System.out.println("++++++++++++++++++++++++++++++");
                         System.out.print("Opção: ");
                         opc2 = ler.next();
@@ -74,18 +77,24 @@ public class Main {
 
                         }
 
-                        ler.nextLine();
-                        System.out.print("Nome: ");
-                        contato.setNome(ler.nextLine());
-                        System.out.print("E-mail: ");
-                        contato.setEmail(ler.next());
-                        System.out.print("Fone: ");
-                        contato.setTelefone(ler.next());
+                        if(opc2.equals("1") || opc2.equals("2")){
+                            ler.nextLine();
+                            System.out.print("Nome: ");
+                            contato.setNome(ler.nextLine());
+                            System.out.print("E-mail: ");
+                            contato.setEmail(ler.next());
+                            System.out.print("Fone: ");
+                            contato.setTelefone(ler.next());
 
-                        if (contato.getConexao() != null) {
-                            contato.gravarContato();
+                            if (contato.getConexao() != null) {
+                                contato.gravarContato();
+                            }
+                            opc2 = "3";
                         }
-                    }while(opc2.equals("3"));
+
+
+
+                    }while(!opc2.equals("3"));
                 }
                 case "4"->{
                     if(banco!=null && contato!=null){
@@ -125,7 +134,40 @@ public class Main {
                             opc3 = "3";
                         }
 
+
                     }while(!opc3.equals("3"));
+                }
+
+                case "6"->{
+                    String opc4;
+
+                    do {
+                        System.out.println("++++++++++++++++++++++++++++++");
+                        System.out.println("1 - Deseja deletar usuário por id");
+                        System.out.println("2 - Deseja deletar usuário sem id(altera último usuário com conexão atribuída)");
+                        System.out.println("3 - Voltar");
+                        System.out.println("++++++++++++++++++++++++++++++");
+                        System.out.print("Opção: ");
+                        opc4 = ler.next();
+
+                        if(opc4.equals("1")){
+                            if(contato!=null)
+                                contato.deletarContatoById();
+                            else
+                                System.out.println("Não há nenhum contato criado na classe");
+
+                            opc4 = "3";
+                        }else if(opc4.equals("2")){
+                            if(contato!=null) {
+                                contato.deletarContado();
+                                System.out.println(contato.getIdContato());
+                            }else
+                                System.out.println("Não há nenhum contato criado na classe");
+                            opc4 = "3";
+                        }
+
+
+                    }while(!opc4.equals("3"));
                 }
 
 

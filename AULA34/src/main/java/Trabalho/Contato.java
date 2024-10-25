@@ -136,6 +136,40 @@ public class Contato {
             System.out.println("Não foi possível realizar a alteração");
         }
     }
+    public void deletarContado() throws SQLException {
+        String sql = "delete from tb_contato WHERE contato_id = "+this.idContato;
+
+        PreparedStatement requisicao = conexao.prepareStatement(sql);
+
+
+        int res = requisicao.executeUpdate();
+
+        if(res >0){
+            System.out.println("Exclusão feita");
+        }else{
+            System.out.println("Não foi possível realizar a exclusão");
+        }
+
+
+    }
+
+    public void deletarContatoById() throws SQLException {
+        String sql = "delete from tb_contato WHERE contato_id = ?";
+        PreparedStatement requisicao =  conexao.prepareStatement(sql);
+
+        System.out.print("Digite o id que deseja excluir: ");
+        int id = ler.nextInt();
+
+
+        requisicao.setInt(1, id);
+        int res = requisicao.executeUpdate();
+
+        if(res >0){
+            System.out.println("Exclusão feita");
+        }else{
+            System.out.println("Não foi possível realizar a exclusão");
+        }
+    }
 
 
 }
