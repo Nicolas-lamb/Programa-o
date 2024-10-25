@@ -171,5 +171,48 @@ public class Contato {
         }
     }
 
+    public ResultSet obterContatoById(int idContato) throws SQLException {
+        String sql = " select contato_id, nome, e_mail, telefone from tb_contato where contato_id =" + idContato;
+
+
+        PreparedStatement requisicao = conexao.prepareStatement(sql);
+
+        return  requisicao.executeQuery();
+
+        /*while(resultado.next()){
+            int idContato = resultado.getInt("contato_id");
+            String nome = resultado.getString("nome");
+            String email = resultado.getString("e_mail");
+            String telefone = resultado.getString("telefone");
+            String data = resultado.getString("now");
+            String segundos = resultado.getString("sec");
+
+            System.out.println("Id: "+idContato);
+            System.out.println("Nome: "+nome);
+            System.out.println("E-mail: "+email);
+            System.out.println("Telefone: "+ telefone);*/
+    }
+    public ResultSet obterContato() throws SQLException {
+        String sql = " select contato_id, nome, e_mail, telefone from tb_contato where contato_id =" + this.idContato;
+
+
+        PreparedStatement requisicao = conexao.prepareStatement(sql);
+
+
+        /*while(resultado.next()){
+            int idContato = resultado.getInt("contato_id");
+            String nome = resultado.getString("nome");
+            String email = resultado.getString("e_mail");
+            String telefone = resultado.getString("telefone");
+            String data = resultado.getString("now");
+            String segundos = resultado.getString("sec");
+
+            System.out.println("Id: "+idContato);
+            System.out.println("Nome: "+nome);
+            System.out.println("E-mail: "+email);
+            System.out.println("Telefone: "+ telefone);*/
+        return requisicao.executeQuery();
+    }
+
 
 }

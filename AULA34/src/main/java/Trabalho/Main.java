@@ -1,5 +1,6 @@
 package Trabalho;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -20,7 +21,8 @@ public class Main {
             System.out.println("3 - Adicionar contato");
             System.out.println("4 - Atribuir conexão ao contato");
             System.out.println("5 - Alterar contato");
-            System.out.println("5 - Deletar contato");
+            System.out.println("6 - Deletar contato");
+            System.out.println("7 - Obter contato");
 
             System.out.println("0 - Conectar com o banco local");
             System.out.println("===============================");
@@ -169,9 +171,62 @@ public class Main {
 
                     }while(!opc4.equals("3"));
                 }
+                case "7"-> {
+                    String opc5;
 
+                    do {
+                        System.out.println("++++++++++++++++++++++++++++++");
+                        System.out.println("1 - Deseja obter usuário por id");
+                        System.out.println("2 - Deseja obter usuário sem id(altera último usuário com conexão atribuída)");
+                        System.out.println("3 - Voltar");
+                        System.out.println("++++++++++++++++++++++++++++++");
+                        System.out.print("Opção: ");
+                        opc5 = ler.next();
 
+                        if (opc5.equals("1")) {
 
+                            if (contato != null) {
+                                System.out.print("Digite o id do contato que deseja obter: ");
+                                int id = ler.nextInt();
+                                ResultSet resultado = contato.obterContatoById(id);
+                                while (resultado.next()) {
+                                    int idContato = resultado.getInt("contato_id");
+                                    String nome = resultado.getString("nome");
+                                    String email = resultado.getString("e_mail");
+                                    String telefone = resultado.getString("telefone");
+
+                                    System.out.println("++++++++++++++++++++++++++++++");
+                                    System.out.println("Id: " + idContato);
+                                    System.out.println("Nome: " + nome);
+                                    System.out.println("E-mail: " + email);
+                                    System.out.println("Telefone: " + telefone);
+                                    System.out.println("++++++++++++++++++++++++++++++");
+                                }
+                            } else
+                                System.out.println("Não há nenhum contato criado na classe");
+
+                            opc5 = "3";
+                        } else if (opc5.equals("2")) {
+                            if (contato != null) {
+                                ResultSet resultado = contato.obterContato();
+                                while (resultado.next()) {
+                                    int idContato = resultado.getInt("contato_id");
+                                    String nome = resultado.getString("nome");
+                                    String email = resultado.getString("e_mail");
+                                    String telefone = resultado.getString("telefone");
+
+                                    System.out.println("++++++++++++++++++++++++++++++");
+                                    System.out.println("Id: " + idContato);
+                                    System.out.println("Nome: " + nome);
+                                    System.out.println("E-mail: " + email);
+                                    System.out.println("Telefone: " + telefone);
+                                    System.out.println("++++++++++++++++++++++++++++++");
+                                }
+                            }else
+                                System.out.println("Não há nenhum contato criado na classe");
+                        }
+                    } while (!opc5.equals("3")) ;
+                }
 
                 case "0"->{
 
