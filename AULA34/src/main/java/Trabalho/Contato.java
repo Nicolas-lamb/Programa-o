@@ -202,23 +202,51 @@ public class Contato {
         while(resultado.next()){
 
             Contato contato = new Contato();
+
             int idContato = resultado.getInt("contato_id");
             String nome = resultado.getString("nome");
             String email = resultado.getString("e_mail");
             String telefone = resultado.getString("telefone");
-
-
-
             contato.setIdContato(idContato);
             contato.setNome(nome);
             contato.setEmail(email);
             contato.setTelefone(telefone);
 
+            list.add(contato);
+
+        }
+        return list;
+    }
+
+    public List<Contato> pesquisarContato(String termo) throws SQLException {
+        List<Contato> list = new ArrayList<>();
+        String sql = " select contato_id, nome, e_mail, telefone from tb_contato where nome like ? or e_mail like ? or telefone like ?";
+
+        PreparedStatement requisicao = conexao.prepareStatement(sql);
+        requisicao.setString(1, "%"+termo+"%");
+        requisicao.setString(2, "%"+termo+"%");
+        requisicao.setString(3, "%"+termo+"%");
+
+
+
+        ResultSet resultado = requisicao.executeQuery();
+
+        while(resultado.next()){
+
+            Contato contato = new Contato();
+
+            int idContato = resultado.getInt("contato_id");
+            String nome = resultado.getString("nome");
+            String email = resultado.getString("e_mail");
+            String telefone = resultado.getString("telefone");
+            contato.setIdContato(idContato);
+            contato.setNome(nome);
+            contato.setEmail(email);
+            contato.setTelefone(telefone);
 
             list.add(contato);
 
         }
-
 
         return list;
     }

@@ -25,7 +25,8 @@ public class Main {
             System.out.println("5 - Alterar contato");
             System.out.println("6 - Deletar contato");
             System.out.println("7 - Obter contato");
-
+            System.out.println("8 - Listar todos os contato");
+            System.out.println("9 - Listar contatos por termo");
             System.out.println("0 - Conectar com o banco local");
             System.out.println("===============================");
             System.out.print("Opção: ");
@@ -239,6 +240,22 @@ public class Main {
                            System.out.println("E-mail: "+list.get(i).getEmail());
                            System.out.println("Telefone: "+list.get(i).getTelefone());
                        }
+                    }else
+                        System.out.println("Não há nenhum contato criado na classe");
+                }
+                case "9"->{
+                    if(contato!=null){
+                        ler.nextLine();
+                        System.out.print("Digite o termo que deseja pesquisar: ");
+                        String termo = ler.nextLine();
+                        list = contato.pesquisarContato(termo);
+                        for (int i = 0; i<list.size(); i++){
+                            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>");
+                            System.out.println("Id: "+list.get(i).getIdContato());
+                            System.out.println("Nome: "+list.get(i).getNome());
+                            System.out.println("E-mail: "+list.get(i).getEmail());
+                            System.out.println("Telefone: "+list.get(i).getTelefone());
+                        }
                     }else
                         System.out.println("Não há nenhum contato criado na classe");
                 }
