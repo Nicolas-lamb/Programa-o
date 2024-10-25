@@ -27,7 +27,7 @@ public class Main {
             System.out.println("7 - Obter contato");
             System.out.println("8 - Listar todos os contato");
             System.out.println("9 - Listar contatos por termo");
-            System.out.println("0 - Conectar com o banco local");
+            System.out.println("0 - Sair");
             System.out.println("===============================");
             System.out.print("Opção: ");
             opc = ler.next();
@@ -77,7 +77,7 @@ public class Main {
                             }
                             case "2" -> {
                                 contato = new Contato();
-                                System.out.println("[ALERTA] Você criou um contato sem conexão, portanto utilize a opção 4 antes de criar outra para que não perca esse");
+                                System.out.println("[ALERTA] Você irá criar um contato sem conexão, portanto utilize a opção 4 antes de criar outra para que não perca esse");
                             }
 
                         }
@@ -149,7 +149,7 @@ public class Main {
                     do {
                         System.out.println("++++++++++++++++++++++++++++++");
                         System.out.println("1 - Deseja deletar usuário por id");
-                        System.out.println("2 - Deseja deletar usuário sem id(altera último usuário com conexão atribuída)");
+                        System.out.println("2 - Deseja deletar usuário sem id(deleta último usuário com conexão atribuída)");
                         System.out.println("3 - Voltar");
                         System.out.println("++++++++++++++++++++++++++++++");
                         System.out.print("Opção: ");
@@ -180,7 +180,7 @@ public class Main {
                     do {
                         System.out.println("++++++++++++++++++++++++++++++");
                         System.out.println("1 - Deseja obter usuário por id");
-                        System.out.println("2 - Deseja obter usuário sem id(altera último usuário com conexão atribuída)");
+                        System.out.println("2 - Deseja obter usuário sem id(obter último usuário com conexão atribuída)");
                         System.out.println("3 - Voltar");
                         System.out.println("++++++++++++++++++++++++++++++");
                         System.out.print("Opção: ");
@@ -208,10 +208,10 @@ public class Main {
                             } else
                                 System.out.println("Não há nenhum contato criado na classe");
 
-                            opc5 = "3";
                         } else if (opc5.equals("2")) {
                             if (contato != null) {
                                 ResultSet resultado = contato.obterContatos();
+
                                 while (resultado.next()) {
                                     int idContato = resultado.getInt("contato_id");
                                     String nome = resultado.getString("nome");
@@ -227,6 +227,7 @@ public class Main {
                                 }
                             }else
                                 System.out.println("Não há nenhum contato criado na classe");
+
                         }
                     } while (!opc5.equals("3")) ;
                 }
@@ -272,7 +273,7 @@ public class Main {
 
 
             }
-        }while(!opc.equals("4"));
+        }while(!opc.equals("0"));
 
 
 
