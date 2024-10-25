@@ -2,6 +2,7 @@ package Trabalho;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
 
         Banco banco = null;
         Contato contato = null;
+        List<Contato> list;
 
         Class.forName("com.mysql.cj.jdbc.Driver");
 
@@ -208,7 +210,7 @@ public class Main {
                             opc5 = "3";
                         } else if (opc5.equals("2")) {
                             if (contato != null) {
-                                ResultSet resultado = contato.obterContato();
+                                ResultSet resultado = contato.obterContatos();
                                 while (resultado.next()) {
                                     int idContato = resultado.getInt("contato_id");
                                     String nome = resultado.getString("nome");
@@ -226,6 +228,19 @@ public class Main {
                                 System.out.println("Não há nenhum contato criado na classe");
                         }
                     } while (!opc5.equals("3")) ;
+                }
+                case "8"->{
+                    if(contato!=null){
+                       list = contato.obterListaContato();
+                       for (int i = 0; i<list.size(); i++){
+                           System.out.println(">>>>>>>>>>>>>>>>>>>>>>>");
+                           System.out.println("Id: "+list.get(i).getIdContato());
+                           System.out.println("Nome: "+list.get(i).getNome());
+                           System.out.println("E-mail: "+list.get(i).getEmail());
+                           System.out.println("Telefone: "+list.get(i).getTelefone());
+                       }
+                    }else
+                        System.out.println("Não há nenhum contato criado na classe");
                 }
 
                 case "0"->{
